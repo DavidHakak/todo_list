@@ -1,0 +1,17 @@
+.todoList {
+  background: rgb(251, 252, 251);
+  padding: 10px;
+  height: 350px;
+  width: 280px;
+  border: solid 0.5px black;
+  border-radius: 10px;
+  overflow: scroll;
+  cursor: pointer;
+}
+
+.listName {
+  padding: 10px;
+  border-bottom: solid 0.5px black;
+  font-size: larger;
+  font-weight: bolder;
+}

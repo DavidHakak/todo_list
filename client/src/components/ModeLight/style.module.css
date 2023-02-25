@@ -1,0 +1,14 @@
+.modeLight {
+  cursor: pointer;
+  font-size: 2.5rem;
+  position: absolute;
+  left: 14px;
+  top: 15px;
+}
+
+@media screen and (max-width: 500px) {
+  .modeLight {
+    top: 90px;
+    left: 10px;
+  }
+}

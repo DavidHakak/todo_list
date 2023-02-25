@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --font-color-dark-mode: white;
+  --font-color-light-mode: black;
+}

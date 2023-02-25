@@ -1,0 +1,21 @@
+.header {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    border-bottom: solid 0.5px var(--font-color-dark-mode);
+    margin-bottom: 20px;
+  }
+  .hamburgerMenu {
+    top: 90px;
+    right: 0;
+  }
+}
