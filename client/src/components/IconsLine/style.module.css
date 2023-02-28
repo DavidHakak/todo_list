@@ -1,0 +1,39 @@
+.iconsLineContainer {
+  width: 275px;
+  padding: 8px 0px;
+  background: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background: var(--color-to-hover);
+}
+
+.containerInputSubmit {
+  width: 90%;
+  height: 100%;
+  padding: 5px 10px 5px 10px;
+  border: solid 0.5px black;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.containerInputSubmit > input {
+}

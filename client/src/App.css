@@ -8,14 +8,22 @@
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
-  padding: 20px;
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
 
+input[type="text"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+}
+
 :root {
   --font-color-dark-mode: white;
   --font-color-light-mode: black;
+  --color-to-hover: rgba(128, 128, 128, 0.334);
 }

@@ -6,7 +6,17 @@
   align-items: center;
 }
 
+.container:hover {
+  background: rgba(128, 128, 128, 0.406);
+}
+
 .container.checked {
   color: gray;
   text-decoration: line-through;
+}
+
+.container > label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

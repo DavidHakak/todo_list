@@ -1,8 +1,13 @@
-.todoList {
-  background: rgb(251, 252, 251);
-  padding: 10px;
-  height: 350px;
+.todoListContainer {
+  height: 400px;
   width: 280px;
+  position: relative;
+}
+.todoList {
+  height: 100%;
+  width: 100%;
+  background: rgb(251, 252, 251);
+  padding: 10px 10px 0px 10px;
   border: solid 0.5px black;
   border-radius: 10px;
   overflow: scroll;
@@ -10,8 +15,31 @@
 }
 
 .listName {
-  padding: 10px;
+  width: 278px;
+  padding: 12px;
   border-bottom: solid 0.5px black;
   font-size: larger;
   font-weight: bolder;
+  border-radius: 10px 10px 0px 0px;
+  position: absolute;
+  top: 0;
+  left: 1px;
+  right: 0;
+  z-index: 20;
+  background: white;
+}
+
+.activeTodos {
+  margin-top: 46px;
+}
+
+.notActiveTodos {
+  background: var();
+  border-top: dashed 1px rgb(0, 0, 0);
+}
+
+.done {
+  padding: 15px 0px 14px 19px;
+  display: flex;
+  align-items: center;
 }
