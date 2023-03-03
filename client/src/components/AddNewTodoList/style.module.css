@@ -1,0 +1,46 @@
+.addNewTodoListContainer {
+  height: 600px;
+  width: 450px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  overflow: scroll;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border-bottom: solid 0.5px black;
+  font-size: larger;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 1px;
+  right: 0;
+  z-index: 10;
+}
+
+.header > input {
+  width: 80%;
+  font-size: larger;
+  font-weight: bolder;
+  font-family: Georgia;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  margin-top: 70px;
+  background: pink;
+}
+
+.buttonAddTodo {
+  width: 100%;
+  background: gray;
+}

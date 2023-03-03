@@ -1,16 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import popupContext from "../../context/PopupContext";
 import styles from "./style.module.css";
 
-function Popup({ children }) {
-  const setPopupContent = useContext(popupContext);
+function Popup() {
+  // const todoLists = useSelector((state) => state.todos.value);
+  const { setPopupContent, popupContent } = useContext(popupContext);
   const handleClosePopup = () => {
     setPopupContent(null);
   };
 
   return (
     <div className={styles.popupContainer} onClick={handleClosePopup}>
-      {children}
+      {popupContent}
     </div>
   );
 }

@@ -1,157 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const todoLists = [
-  {
-    id: 1,
-    header: "Chores",
-    todos: [
-      { id: 1, description: "Do laundry", checked: false },
-      { id: 2, description: "Wash dishes", checked: true },
-      { id: 3, description: "Buy groceries", checked: false },
-      { id: 4, description: "Do laundry", checked: false },
-      { id: 5, description: "Wash dishes", checked: true },
-      { id: 6, description: "Buy groceries", checked: false },
-      { id: 7, description: "Do laundry", checked: false },
-      { id: 8, description: "Wash dishes", checked: true },
-      { id: 9, description: "Buy groceries", checked: true },
-    ],
-  },
-  {
-    id: 2,
-    header: "Tasks",
-    todos: [
-      { id: 1, description: "Clean the house", checked: true },
-      { id: 2, description: "Take out the trash", checked: true },
-      { id: 3, description: "Mow the lawn", checked: true },
-    ],
-  },
-  {
-    id: 3,
-    header: "Chores",
-    todos: [
-      { id: 1, description: "Do laundry", checked: false },
-      { id: 2, description: "Wash dishes", checked: false },
-      { id: 3, description: "Buy groceries", checked: false },
-    ],
-  },
-  {
-    id: 4,
-    header: "Tasks",
-    todos: [
-      { id: 1, description: "Clean the house", checked: false },
-      { id: 2, description: "Take out the trash", checked: true },
-      { id: 3, description: "Mow the lawn", checked: false },
-    ],
-  },
-  {
-    id: 5,
-    header: "Chores",
-    todos: [
-      { id: 1, description: "Do laundry", checked: true },
-      { id: 2, description: "Wash dishes", checked: false },
-      { id: 3, description: "Buy groceries", checked: true },
-    ],
-  },
-  {
-    id: 6,
-    header: "Tasks",
-    todos: [
-      { id: 1, description: "Clean the house", checked: false },
-      { id: 2, description: "Take out the trash", checked: false },
-      { id: 3, description: "Mow the lawn", checked: false },
-    ],
-  },
-  {
-    id: 7,
-    header: "Chores",
-    todos: [
-      { id: 1, description: "Do laundry", checked: false },
-      { id: 2, description: "Wash dishes", checked: true },
-      { id: 3, description: "Buy groceries", checked: false },
-    ],
-  },
-  {
-    id: 8,
-    header: "Tasks",
-    todos: [
-      { id: 1, description: "Clean the house", checked: false },
-      { id: 2, description: "Take out the trash", checked: true },
-      { id: 3, description: "Mow the lawn", checked: false },
-    ],
-  },
-  {
-    id: 9,
-    header: "Chores",
-    todos: [
-      { id: 1, description: "Do laundry", checked: true },
-      { id: 2, description: "Wash dishes", checked: false },
-      { id: 3, description: "Buy groceries", checked: false },
-    ],
-  },
-  {
-    id: 10,
-    header: "Tasks",
-    todos: [
-      { id: 1, description: "Clean the house", checked: false },
-      { id: 2, description: "Take out the trash", checked: true },
-      { id: 3, description: "Mow the lawn", checked: false },
-    ],
-  },
-  {
-    id: 11,
-    header: "Chores",
-    todos: [
-      { id: 1, description: "Do laundry", checked: false },
-      { id: 2, description: "Wash dishes", checked: true },
-      { id: 3, description: "Buy groceries", checked: false },
-    ],
-  },
-  {
-    id: 12,
-    header: "Tasks",
-    todos: [
-      { id: 1, description: "Clean the house", checked: true },
-      { id: 2, description: "Take out the trash", checked: false },
-      { id: 3, description: "Mow the lawn", checked: true },
-    ],
-  },
-  {
-    id: 13,
-    header: "Chores",
-    todos: [
-      { id: 1, description: "Do laundry", checked: false },
-      { id: 2, description: "Wash dishes", checked: true },
-      { id: 3, description: "Buy groceries", checked: false },
-    ],
-  },
-  {
-    id: 14,
-    header: "Tasks",
-    todos: [
-      { id: 1, description: "Clean the house", checked: true },
-      { id: 2, description: "Take out the trash", checked: false },
-      { id: 3, description: "Mow the lawn", checked: false },
-    ],
-  },
-  {
-    id: 15,
-    header: "Chores",
-    todos: [
-      { id: 1, description: "Do laundry", checked: true },
-      { id: 2, description: "Wash dishes", checked: false },
-      { id: 3, description: "Buy groceries", checked: false },
-    ],
-  },
-  {
-    id: 16,
-    header: "Tasks",
-    todos: [
-      { id: 1, description: "Clean the house", checked: false },
-      { id: 2, description: "Take out the trash", checked: true },
-      { id: 3, description: "Mow the lawn", checked: false },
-    ],
-  },
-];
+const todoListString = JSON.parse(localStorage.getItem("myLists"));
+
+let todoLists = todoListString;
+
+let initialStateValue = [];
 
 const todoListsSlice = createSlice({
   name: "todoLists",
@@ -159,27 +12,53 @@ const todoListsSlice = createSlice({
   reducers: {
     addNewTodoList: (state, action) => {
       state.value.push(action.payload);
+
+      const newTodoLists = state.value;
+      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
     },
 
     addNewTodoInList: (state, action) => {
-      let listIndex = "";
-      let todoId = "";
-      state.value.find((todo, index) =>
-        todo.id === action.payload.listId ? listIndex === index : ""
+      if (action.payload.todoName) {
+        const listIndex = state.value.findIndex(
+          (list) => list.id === action.payload.listId
+        );
+
+        const newTodoId =
+          state.value[listIndex].todos[state.value[listIndex].todos.length - 1]
+            .id;
+
+        state.value[listIndex].todos.push({
+          id: newTodoId + 1,
+          description: action.payload.todoName,
+          checked: false,
+        });
+      }
+
+      const newTodoLists = state.value;
+      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
+    },
+
+    deleteTodoInList: (state, action) => {
+      const listIndex = state.value.findIndex(
+        (list) => list.id === action.payload.listId
       );
-      todoId =
-        state.value[listIndex].todos[state.value[listIndex].todos.length - 1]
-          .id;
-      state.value[listIndex].todos.push({
-        id: todoId + 1,
-        description: action.payload.todoName,
-        checked: false,
-      });
-      console.log(state.value);
+
+      const todoIndex = state.value[listIndex].todos.findIndex(
+        (todo) => todo.id === action.payload.todoId
+      );
+
+      state.value[listIndex].todos.splice(todoIndex, 1);
+
+      const newTodoLists = state.value;
+      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
     },
 
     deleteTodoList: (state, action) => {
-      state.value = state.value.filter((todo) => todo.id !== action.payload.id);
+      state.value = state.value.filter(
+        (todo) => todo.id !== action.payload.listId
+      );
+      const newTodoLists = state.value;
+      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
     },
 
     updateTodoChecked: (state, action) => {
@@ -194,6 +73,9 @@ const todoListsSlice = createSlice({
       );
 
       state.value[listIndex].todos[todoIndex].checked = action.payload.checked;
+
+      const newTodoLists = state.value;
+      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
     },
 
     updateTodoListHeader: (state, action) => {
@@ -211,16 +93,44 @@ const todoListsSlice = createSlice({
           : null
       );
     },
+
+    searchList: (state, action) => {
+      action.payload.value = action.payload.value.trim();
+      if (action.payload.value.length > 0) {
+        initialStateValue = state.value.filter((list) =>
+          list.header
+            .toLocaleLowerCase()
+            .startsWith(action.payload.value.toLocaleLowerCase())
+        );
+        state.value = initialStateValue;
+      } else {
+        state.value = todoLists;
+      }
+    },
+
+    returnAllListToStateValue: (state, action) => {
+      state.value = todoLists;
+    },
+
+    removeAll: (state, action) => {
+      state.value = [];
+      const newTodoLists = state.value;
+      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
+    },
   },
 });
 
 export const {
   addNewTodoList,
   addNewTodoInList,
+  deleteTodoInList,
   deleteTodoList,
   updateTodoChecked,
   updateTodoListHeader,
   updateTodoInList,
+  searchList,
+  returnAllListToStateValue,
+  removeAll,
 } = todoListsSlice.actions;
 
 export default todoListsSlice.reducer;

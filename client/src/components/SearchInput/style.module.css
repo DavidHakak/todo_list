@@ -1,0 +1,36 @@
+.searchInputContainer {
+  width: 100%;
+  height: 30px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.innerInputDiv {
+  height: 100%;
+  width: 25%;
+  padding: 5px;
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.innerInputDiv > input {
+  height: 30px;
+  width: 90%;
+  padding: 5px;
+  border: none;
+}
+
+.icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .searchInputContainer > input {
+    width: 75%;
+  }
+}

@@ -7,3 +7,22 @@
   justify-content: center;
   overflow: scroll;
 }
+
+.addTodoList {
+  height: 400px;
+  width: 280px;
+  border: solid 1px rgb(255, 255, 255);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plusIcon {
+  font-size: 5rem;
+  cursor: pointer;
+}
+
+.plusIcon:hover {
+  fill: rgb(211, 211, 211);
+}

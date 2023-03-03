@@ -19,7 +19,9 @@ function IconsLine({ listId }) {
 
   const handleAddTodo = () => {
     setShowIcons(true);
-    dispatch(addNewTodoInList({ listId: listId, todoName: totoName }));
+    dispatch(
+      addNewTodoInList({ listId: listId, todoName: totoName.current.value })
+    );
   };
 
   return (

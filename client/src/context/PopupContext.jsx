@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
 
-const popupContext = createContext({});
+const PopupContext = createContext({});
 
-export default popupContext;
+export default PopupContext;

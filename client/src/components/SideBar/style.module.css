@@ -1,8 +1,11 @@
 .sideBarContainer {
   min-height: 100vh;
   width: 100vw;
+  /* background: rgba(255, 255, 255, 0.09); */
   backdrop-filter: blur(2px);
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 100;
 }
 
@@ -20,8 +23,8 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  right: 70px;
-  top: 70px;
+  right: 35px;
+  top: 85px;
 }
 
 .sideBarLine {

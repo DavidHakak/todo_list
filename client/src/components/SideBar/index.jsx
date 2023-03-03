@@ -1,9 +1,19 @@
 import styles from "./style.module.css";
+import { removeAll } from "../../features/todos";
+import { openSearchInput } from "../../features/searchInput";
+import { useDispatch, useSelector } from "react-redux";
 
 function SideBar({ setIsSideBarOpen }) {
-  const handelClick = (e) => {
-    e.stopPropagation();
-    //setIsSideBarOpen(false);
+  const dispatch = useDispatch();
+
+  const handelClickSearch = (e) => {
+    dispatch(openSearchInput());
+  };
+
+  const handelClickRemoveAll = (e) => {
+    //   e.stopPropagation();
+    setIsSideBarOpen(false);
+    dispatch(removeAll());
   };
   return (
     <div
@@ -13,18 +23,16 @@ function SideBar({ setIsSideBarOpen }) {
       }}
     >
       <div className={styles.innerSideBarContainer}>
-        <div className={styles.sideBarLine}>Search Todo</div>
+        <div className={styles.sideBarLine}>Add New Todo</div>
+        <div className={styles.sideBarLine} onClick={handelClickSearch}>
+          Search Todo
+        </div>
         <div
           className={styles.sideBarLine}
-          onClick={(e) => {
-            handelClick(e);
-          }}
+          onClick={(e) => handelClickRemoveAll(e)}
         >
-          Add New{" "}
+          Remove All
         </div>
-        <div className={styles.sideBarLine}>Remove All</div>
-        <div className={styles.sideBarLine}>Add </div>
-        <div className={styles.sideBarLine}>Add New Todo</div>
       </div>
     </div>
   );

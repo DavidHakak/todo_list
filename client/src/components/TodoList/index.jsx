@@ -1,25 +1,56 @@
-import React, { useState } from "react";
 import styles from "./style.module.css";
 import Todo from "../Todo";
-import TodoListPopup from "../TodoListPopup";
-import { useDispatch } from "react-redux";
 import IconsLine from "../IconsLine";
+import { useContext, useEffect, useState } from "react";
+import PopupContext from "../../context/PopupContext";
 
-function TodoList({ header, todos, listId }) {
-  const todoNotChecked = [];
-  const todoChecked = [];
+function TodoList({ header, todos, listId, height, width }) {
+  // const todoNotChecked = [];
+  // const todoChecked = [];
 
-  const dispatch = useDispatch();
-  const handleClick = () => {};
+  const { setPopupContent } = useContext(PopupContext);
 
-  todos.filter((todo) => {
-    todo.checked === true ? todoNotChecked.push(todo) : todoChecked.push(todo);
-  });
+  const handleOpenPopup = () => {
+    setPopupContent(
+      <TodoList
+        header={header}
+        todos={todos}
+        listId={listId}
+        height={"600px"}
+        width={"450px"}
+      />
+    );
+  };
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+  };
+
+  const [todoNotChecked, setTodoNotChecked] = useState([]);
+  const [todoChecked, setTodoChecked] = useState([]);
+
+  useEffect(() => {
+    let checkedList = [];
+    let uncheckedList = [];
+
+    todos.filter((todo) => {
+      todo.checked === true ? checkedList.push(todo) : uncheckedList.push(todo);
+    });
+
+    setTodoNotChecked(uncheckedList);
+    setTodoChecked(checkedList);
+  }, [todos]);
 
   return (
-    <div className={styles.todoListContainer}>
-      <div className={styles.todoList} id={listId} onClick={handleClick}>
-        <header className={styles.listName}>{header}</header>
+    <div
+      className={styles.todoListContainer}
+      style={{ height: height, width: width }}
+      onClick={(e) => handleClick(e)}
+    >
+      <div className={styles.todoList} id={listId}>
+        <header className={styles.listName} onClick={handleOpenPopup}>
+          {header}
+        </header>
 
         <div className={styles.activeTodos}>
           {todoNotChecked.map((todo) => {
