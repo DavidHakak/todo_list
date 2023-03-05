@@ -5,22 +5,28 @@ import { useDispatch } from "react-redux";
 import { deleteTodoList, addNewTodoInList } from "../../features/todos";
 import { useRef, useState } from "react";
 import { BsArrowRightCircle } from "react-icons/bs";
+import { useContext } from "react";
+import PopupContext from "../../context/PopupContext";
 
 function IconsLine({ listId }) {
+  const { setPopupContent, popupContent } = useContext(PopupContext);
   const [showIcons, setShowIcons] = useState(true);
 
-  const totoName = useRef("");
+  const todoName = useRef("");
 
   const dispatch = useDispatch();
 
   const handleRemove = () => {
     dispatch(deleteTodoList({ listId }));
+    if (popupContent) {
+      setPopupContent(null);
+    }
   };
 
   const handleAddTodo = () => {
     setShowIcons(true);
     dispatch(
-      addNewTodoInList({ listId: listId, todoName: totoName.current.value })
+      addNewTodoInList({ listId: listId, todoName: todoName.current.value })
     );
   };
 
@@ -37,7 +43,7 @@ function IconsLine({ listId }) {
         </>
       ) : (
         <div className={styles.containerInputSubmit}>
-          <input type="text" placeholder="Todo Name :" ref={totoName} />
+          <input type="text" placeholder="Todo Name :" ref={todoName} />
           <BsArrowRightCircle onClick={handleAddTodo} />
         </div>
       )}

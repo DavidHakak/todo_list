@@ -6,15 +6,17 @@ import SideBar from "../SideBar";
 
 function Header() {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+
+  const handleSideBarClick = () => {
+    setIsSideBarOpen(!isSideBarOpen);
+  };
+
   return (
     <header className={styles.header}>
       <ModeLight />
       <h2>Todo List App</h2>
-      <HamburgerMenu
-        isSideBarOpen={isSideBarOpen}
-        setIsSideBarOpen={setIsSideBarOpen}
-      />
-      {isSideBarOpen && <SideBar setIsSideBarOpen={setIsSideBarOpen} />}
+      <HamburgerMenu handleSideBarClick={handleSideBarClick} />
+      {isSideBarOpen && <SideBar handleSideBarClick={handleSideBarClick} />}
     </header>
   );
 }

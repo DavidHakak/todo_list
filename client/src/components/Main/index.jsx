@@ -9,22 +9,19 @@ function Main() {
 
   return (
     <main className={styles.main}>
-      {todoLists ? (
-        todoLists.map((todoList) => {
-          return (
-            <TodoList
-              key={todoList.id}
-              header={todoList.header}
-              todos={todoList.todos}
-              listId={todoList.id}
-              height="400px"
-              width="280px"
-            />
-          );
-        })
-      ) : (
-        <AddNewTodoList />
-      )}
+      {todoLists
+        ? todoLists.map((todoList) => {
+            return (
+              <TodoList
+                key={todoList.id}
+                header={todoList.header}
+                listId={todoList.id}
+                height="400px"
+                width="280px"
+              />
+            );
+          })
+        : ""}
       <div className={styles.addTodoList}>
         <div className={styles.plusIcon}>
           <BsPlusCircleFill fill="white" className={styles.plusIcon} />

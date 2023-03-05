@@ -3,10 +3,14 @@ import Todo from "../Todo";
 import IconsLine from "../IconsLine";
 import { useContext, useEffect, useState } from "react";
 import PopupContext from "../../context/PopupContext";
+import { useSelector } from "react-redux";
 
-function TodoList({ header, todos, listId, height, width }) {
-  // const todoNotChecked = [];
-  // const todoChecked = [];
+function TodoList({ header, listId, height, width }) {
+  const index = useSelector((state) => state.todos.value).findIndex(
+    (todo) => todo.id === listId
+  );
+
+  const todos = useSelector((state) => state.todos.value[index].todos);
 
   const { setPopupContent } = useContext(PopupContext);
 
@@ -14,7 +18,6 @@ function TodoList({ header, todos, listId, height, width }) {
     setPopupContent(
       <TodoList
         header={header}
-        todos={todos}
         listId={listId}
         height={"600px"}
         width={"450px"}

@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const todoListString = JSON.parse(localStorage.getItem("myLists"));
-
-let todoLists = todoListString;
-
 let initialStateValue = [];
 
 const todoListsSlice = createSlice({
   name: "todoLists",
-  initialState: { value: todoLists },
+  initialState: { value: initialStateValue, myAllLists: [] },
   reducers: {
+    setMyAllLists: (state, action) => {
+      state.myAllLists = action.payload;
+      state.value = action.payload;
+    },
+
     addNewTodoList: (state, action) => {
       state.value.push(action.payload);
 
@@ -23,9 +24,9 @@ const todoListsSlice = createSlice({
           (list) => list.id === action.payload.listId
         );
 
-        const newTodoId =
-          state.value[listIndex].todos[state.value[listIndex].todos.length - 1]
-            .id;
+        const currentTodoList = state.value[listIndex].todos;
+
+        const newTodoId = currentTodoList[currentTodoList.length - 1].id;
 
         state.value[listIndex].todos.push({
           id: newTodoId + 1,
@@ -57,6 +58,7 @@ const todoListsSlice = createSlice({
       state.value = state.value.filter(
         (todo) => todo.id !== action.payload.listId
       );
+
       const newTodoLists = state.value;
       localStorage.setItem("myLists", JSON.stringify(newTodoLists));
     },
@@ -97,19 +99,19 @@ const todoListsSlice = createSlice({
     searchList: (state, action) => {
       action.payload.value = action.payload.value.trim();
       if (action.payload.value.length > 0) {
-        initialStateValue = state.value.filter((list) =>
+        const filteredLists = state.value.filter((list) =>
           list.header
             .toLocaleLowerCase()
             .startsWith(action.payload.value.toLocaleLowerCase())
         );
-        state.value = initialStateValue;
+        state.value = filteredLists;
       } else {
-        state.value = todoLists;
+        state.value = state.myAllLists;
       }
     },
 
     returnAllListToStateValue: (state, action) => {
-      state.value = todoLists;
+      state.value = state.myAllLists;
     },
 
     removeAll: (state, action) => {
@@ -121,6 +123,7 @@ const todoListsSlice = createSlice({
 });
 
 export const {
+  setMyAllLists,
   addNewTodoList,
   addNewTodoInList,
   deleteTodoInList,

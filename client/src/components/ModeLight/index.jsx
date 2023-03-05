@@ -5,22 +5,14 @@ import { RxMoon } from "react-icons/rx";
 
 function ModeLight() {
   const [dark, setDark] = useState(true);
+
+  const handleClick = () => {
+    setDark(!dark);
+  };
+
   return (
-    <div className={styles.modeLight}>
-      {dark ? (
-        <BsSun
-          fill="black"
-          onClick={() => {
-            setDark(false);
-          }}
-        />
-      ) : (
-        <RxMoon
-          onClick={() => {
-            setDark(true);
-          }}
-        />
-      )}
+    <div className={styles.modeLight} onClick={handleClick}>
+      {dark ? <BsSun fill="black" /> : <RxMoon />}
     </div>
   );
 }

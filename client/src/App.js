@@ -3,11 +3,13 @@ import "./App.css";
 import Layout from "./components/Layout";
 import Popup from "./components/Popup";
 import { useState } from "react";
-import TodoList from "./components/TodoList";
-import AddNewTodoList from "./components/AddNewTodoList";
+import { useDispatch } from "react-redux";
+import { setMyAllLists } from "./features/todos";
 
 function App() {
   const [popupContent, setPopupContent] = useState(null);
+  const MY_LISTS = "myLists";
+  const dispatch = useDispatch();
 
   // let todoLists = [
   //   {
@@ -241,12 +243,14 @@ function App() {
   //     ],
   //   },
   // ];
-  const todoListString = localStorage.getItem("myLists");
-  const todoList = JSON.parse(todoListString);
+  const todoListString = localStorage.getItem(MY_LISTS);
+  const todoLists = JSON.parse(todoListString);
 
-  if (!todoList || todoList.length <= 0) {
+  if (!todoLists) {
     const array = JSON.stringify([]);
-    localStorage.setItem("myLists", array);
+    localStorage.setItem(MY_LISTS, array);
+  } else {
+    dispatch(setMyAllLists(todoLists));
   }
 
   return (
