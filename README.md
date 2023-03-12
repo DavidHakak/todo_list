@@ -39,11 +39,20 @@ This project was inspired by Google Keep and was built as a learning exercise fo
 
 <img width="1680" alt="Screenshot 2023-03-12 at 16 53 42" src="https://user-images.githubusercontent.com/117125426/224552836-bb193a63-784a-47d0-87b3-21ff61307513.png">
 
+<br>
+<br>
+
 <img width="1680" alt="Screenshot 2023-03-12 at 16 53 51" src="https://user-images.githubusercontent.com/117125426/224552850-7fe22f97-7834-4c23-97dc-ce7bdfd43a84.png">
+
+<br>
+<br>
 
 
 
 <img width="1680" alt="Screenshot 2023-03-12 at 16 55 07" src="https://user-images.githubusercontent.com/117125426/224552935-a6cf9518-c75f-4b28-8444-8db5703cfd23.png">
+
+<br>
+<br>
 
 
 
