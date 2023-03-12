@@ -1,4 +1,11 @@
 .layout {
+  min-height: 100vh;
   margin: 0;
   padding: 20px;
+  background: var(--bg-dark-color);
+}
+
+.layout.light {
+  background: var(--bg-light-color);
+  color: var(--font-color-light-mode);
 }

@@ -1,9 +1,15 @@
 .container {
   height: 35px;
   margin: 10px;
+  padding: 0px 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.container:hover {
+  border-radius: 7px;
+  background: var(--color-to-hover);
 }
 
 .container.checked {
@@ -13,7 +19,10 @@
 
 .container > label {
   height: 100%;
-  width: 100%;
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: flex;
   align-items: center;
   justify-content: space-between;

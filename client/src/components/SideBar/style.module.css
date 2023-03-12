@@ -1,7 +1,6 @@
 .sideBarContainer {
   min-height: 100vh;
   width: 100vw;
-  /* background: rgba(255, 255, 255, 0.09); */
   backdrop-filter: blur(2px);
   position: fixed;
   top: 0;
@@ -10,7 +9,7 @@
 }
 
 .innerSideBarContainer {
-  background: var(--font-color-light-mode);
+  background: var(--bg-dark-color);
   width: 500px;
   border-radius: 8px 8px 8px 20px;
   clip-path: polygon(
@@ -25,6 +24,11 @@
   position: absolute;
   right: 35px;
   top: 85px;
+}
+
+.innerSideBarContainer.light {
+  background: var(--bg-light-color);
+  border: 3px solid var(--bg-light-color);
 }
 
 .sideBarLine {

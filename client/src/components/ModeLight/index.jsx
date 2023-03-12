@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import styles from "./style.module.css";
 import { BsSun } from "react-icons/bs";
 import { RxMoon } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleModeLite } from "../../features/modeLight";
 
 function ModeLight() {
-  const [dark, setDark] = useState(true);
+  const modeLight = useSelector((state) => state.modeLight.value);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    setDark(!dark);
+    dispatch(toggleModeLite());
   };
 
   return (
     <div className={styles.modeLight} onClick={handleClick}>
-      {dark ? <BsSun fill="black" /> : <RxMoon />}
+      {modeLight ? <BsSun fill="black" /> : <RxMoon />}
     </div>
   );
 }

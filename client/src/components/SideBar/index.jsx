@@ -1,9 +1,16 @@
 import styles from "./style.module.css";
-import { removeAll } from "../../features/todos";
+import { removeAll } from "../../features/todoLists";
 import { openSearchInput } from "../../features/searchInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import PopupContext from "../../context/PopupContext";
+import { useContext } from "react";
+import AddNewTodoList from "../AddNewTodoList";
 
 function SideBar({ handleSideBarClick }) {
+  const modeLight = useSelector((state) => state.modeLight.value);
+
+  const { setPopupContent } = useContext(PopupContext);
+
   const dispatch = useDispatch();
 
   const handelClickSearch = (e) => {
@@ -15,10 +22,20 @@ function SideBar({ handleSideBarClick }) {
     dispatch(removeAll());
   };
 
+  const handleAddTodoList = () => {
+    setPopupContent(<AddNewTodoList />);
+  };
+
   return (
     <div className={styles.sideBarContainer} onClick={handleSideBarClick}>
-      <div className={styles.innerSideBarContainer}>
-        <div className={styles.sideBarLine}>Add New Todo</div>
+      <div
+        className={`${styles.innerSideBarContainer} ${
+          modeLight ? styles.light : ""
+        }`}
+      >
+        <div className={styles.sideBarLine} onClick={handleAddTodoList}>
+          Add New Todo List
+        </div>
         <div className={styles.sideBarLine} onClick={handelClickSearch}>
           Search Todo
         </div>

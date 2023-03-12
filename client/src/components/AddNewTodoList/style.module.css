@@ -1,11 +1,16 @@
 .addNewTodoListContainer {
+  position: relative;
   height: 600px;
   width: 450px;
+}
+
+.addNewTodoList {
+  height: 100%;
+  width: 100%;
   background: white;
   padding: 10px;
   border-radius: 10px;
   overflow: scroll;
-  position: relative;
 }
 
 .header {
@@ -16,31 +21,88 @@
   font-size: larger;
   border-radius: 10px 10px 0px 0px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: absolute;
   top: 0;
-  left: 1px;
-  right: 0;
-  z-index: 10;
+  left: 0;
+}
+
+.header > label {
+  width: 30%;
 }
 
 .header > input {
-  width: 80%;
-  font-size: larger;
+  min-width: 75%;
+  font-size: large;
   font-weight: bolder;
   font-family: Georgia;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
 .main {
-  margin-top: 70px;
-  background: pink;
+  margin: 50px 0px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.addTodoLine {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addTodoLine > input {
+  width: 92%;
+}
+
+.trashIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.trashIcon:hover {
+  background: var(--color-to-hover);
+}
+
+.button > button {
+  padding: 6px;
+  font-family: Georgia;
+  border: none;
+  background: none;
 }
 
 .buttonAddTodo {
+  width: 40%;
+  padding: 3px;
+  background: var(--color-to-hover);
+  border: 1px solid #000000;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.footer {
   width: 100%;
-  background: gray;
+  padding: 12px;
+  margin-top: 20px;
+  background: white;
+  border-top: solid 0.5px black;
+  font-size: larger;
+  border-radius: 0px 0px 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
 }

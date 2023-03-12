@@ -2,7 +2,7 @@ import styles from "./style.module.css";
 import { BsTrash } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { deleteTodoList, addNewTodoInList } from "../../features/todos";
+import { deleteTodoList, addNewTodoInList } from "../../features/todoLists";
 import { useRef, useState } from "react";
 import { BsArrowRightCircle } from "react-icons/bs";
 import { useContext } from "react";

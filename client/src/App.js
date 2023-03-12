@@ -2,9 +2,9 @@ import PopupContext from "./context/PopupContext";
 import "./App.css";
 import Layout from "./components/Layout";
 import Popup from "./components/Popup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setMyAllLists } from "./features/todos";
+import { setMyAllLists } from "./features/todoLists";
 
 function App() {
   const [popupContent, setPopupContent] = useState(null);
@@ -243,15 +243,16 @@ function App() {
   //     ],
   //   },
   // ];
-  const todoListString = localStorage.getItem(MY_LISTS);
-  const todoLists = JSON.parse(todoListString);
-
-  if (!todoLists) {
-    const array = JSON.stringify([]);
-    localStorage.setItem(MY_LISTS, array);
-  } else {
-    dispatch(setMyAllLists(todoLists));
-  }
+  useEffect(() => {
+    const todoListString = localStorage.getItem(MY_LISTS);
+    const todoLists = JSON.parse(todoListString);
+    if (!todoLists) {
+      const array = JSON.stringify([]);
+      localStorage.setItem(MY_LISTS, array);
+    } else {
+      dispatch(setMyAllLists(todoLists));
+    }
+  }, []);
 
   return (
     <div className="App">

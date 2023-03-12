@@ -14,6 +14,9 @@ function TodoList({ header, listId, height, width }) {
 
   const { setPopupContent } = useContext(PopupContext);
 
+  const [todoNotChecked, setTodoNotChecked] = useState([]);
+  const [todoChecked, setTodoChecked] = useState([]);
+
   const handleOpenPopup = () => {
     setPopupContent(
       <TodoList
@@ -28,9 +31,6 @@ function TodoList({ header, listId, height, width }) {
   const handleClick = (e) => {
     e.stopPropagation();
   };
-
-  const [todoNotChecked, setTodoNotChecked] = useState([]);
-  const [todoChecked, setTodoChecked] = useState([]);
 
   useEffect(() => {
     let checkedList = [];

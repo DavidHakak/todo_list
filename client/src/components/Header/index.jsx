@@ -1,22 +1,15 @@
-import React, { useState } from "react";
 import styles from "./style.module.css";
 import ModeLight from "../ModeLight";
 import HamburgerMenu from "../HamburgerMenu";
-import SideBar from "../SideBar";
+import { useSelector } from "react-redux";
 
 function Header() {
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-
-  const handleSideBarClick = () => {
-    setIsSideBarOpen(!isSideBarOpen);
-  };
-
+  const modeLight = useSelector((state) => state.modeLight.value);
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${modeLight ? styles.light : ""}`}>
       <ModeLight />
       <h2>Todo List App</h2>
-      <HamburgerMenu handleSideBarClick={handleSideBarClick} />
-      {isSideBarOpen && <SideBar handleSideBarClick={handleSideBarClick} />}
+      <HamburgerMenu />
     </header>
   );
 }

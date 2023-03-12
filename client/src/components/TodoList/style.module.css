@@ -13,6 +13,7 @@
 }
 
 .listName {
+  min-height: 45px;
   width: 99.4%;
   padding: 12px;
   border-bottom: solid 0.5px black;
@@ -20,7 +21,7 @@
   font-weight: bolder;
   border-radius: 10px 10px 0px 0px;
   position: absolute;
-  top: 0;
+  top: 1px;
   left: 1px;
   right: 0;
   z-index: 10;
@@ -40,4 +41,11 @@
   padding: 15px 0px 14px 19px;
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .todoListContainer {
+    height: 100px;
+    width: 100px;
+  }
 }

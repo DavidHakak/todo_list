@@ -1,7 +1,10 @@
 import styles from "./style.module.css";
 import { closeSearchInput } from "../../features/searchInput";
 import { useDispatch, useSelector } from "react-redux";
-import { searchList, returnAllListToStateValue } from "../../features/todos";
+import {
+  searchList,
+  returnAllListToStateValue,
+} from "../../features/todoLists";
 import { AiOutlineClose } from "react-icons/ai";
 
 function SearchInput() {

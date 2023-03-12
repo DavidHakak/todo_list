@@ -11,11 +11,15 @@
 .addTodoList {
   height: 400px;
   width: 280px;
-  border: solid 1px rgb(255, 255, 255);
+  border: solid 1px rgb(0, 0, 0);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.addTodoList.light {
+  border: solid 1px var(--font-color-dark-mode);
 }
 
 .plusIcon {
@@ -24,5 +28,5 @@
 }
 
 .plusIcon:hover {
-  fill: rgb(211, 211, 211);
+  fill: rgb(72, 72, 72);
 }

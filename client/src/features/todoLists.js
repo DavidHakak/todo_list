@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import updateArrayListsInLS from "../localStorage";
 
 let initialStateValue = [];
 
@@ -9,13 +10,16 @@ const todoListsSlice = createSlice({
     setMyAllLists: (state, action) => {
       state.myAllLists = action.payload;
       state.value = action.payload;
+      updateArrayListsInLS(state.value);
     },
 
     addNewTodoList: (state, action) => {
-      state.value.push(action.payload);
+      const newState = [...state.value, action.payload];
 
-      const newTodoLists = state.value;
-      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
+      state.myAllLists = newState;
+      state.value = newState;
+
+      updateArrayListsInLS(state.value);
     },
 
     addNewTodoInList: (state, action) => {
@@ -28,15 +32,23 @@ const todoListsSlice = createSlice({
 
         const newTodoId = currentTodoList[currentTodoList.length - 1].id;
 
-        state.value[listIndex].todos.push({
+        const newTodo = {
           id: newTodoId + 1,
           description: action.payload.todoName,
           checked: false,
-        });
-      }
+        };
 
-      const newTodoLists = state.value;
-      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
+        state.value = [
+          ...state.value.slice(0, listIndex),
+          {
+            ...state.value[listIndex],
+            todos: [...currentTodoList, newTodo],
+          },
+          ...state.value.slice(listIndex + 1),
+        ];
+
+        updateArrayListsInLS(state.value);
+      }
     },
 
     deleteTodoInList: (state, action) => {
@@ -48,52 +60,61 @@ const todoListsSlice = createSlice({
         (todo) => todo.id === action.payload.todoId
       );
 
+      const currentTodosList = state.value[listIndex].todos;
+
+      state.value = [
+        ...state.value.slice(0, listIndex),
+        {
+          ...state.value[listIndex],
+          todos: [
+            ...currentTodosList.slice(0, todoIndex),
+            ...currentTodosList.slice(todoIndex),
+          ],
+        },
+        ...state.value.slice(listIndex + 1),
+      ];
+
       state.value[listIndex].todos.splice(todoIndex, 1);
 
-      const newTodoLists = state.value;
-      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
+      updateArrayListsInLS(state.value);
     },
 
     deleteTodoList: (state, action) => {
-      state.value = state.value.filter(
-        (todo) => todo.id !== action.payload.listId
-      );
+      state.value = [
+        ...state.value.filter((todo) => todo.id !== action.payload.listId),
+      ];
 
-      const newTodoLists = state.value;
-      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
+      updateArrayListsInLS(state.value);
     },
 
     updateTodoChecked: (state, action) => {
-      let listIndex = "";
-      let todoIndex = "";
-
-      state.value.find((list, index) =>
-        list.id === action.payload.listId ? (listIndex = index) : null
-      );
-      state.value[listIndex].todos.find((todo, index) =>
-        todo.id === action.payload.todoId ? (todoIndex = index) : null
+      const listIndex = state.value.findIndex(
+        (list) => list.id === action.payload.listId
       );
 
-      state.value[listIndex].todos[todoIndex].checked = action.payload.checked;
-
-      const newTodoLists = state.value;
-      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
-    },
-
-    updateTodoListHeader: (state, action) => {
-      state.value.filter((todo) =>
-        todo.id === action.payload.id
-          ? (todo.header = action.payload.header)
-          : null
+      const todoIndex = state.value[listIndex].todos.findIndex(
+        (todo) => todo.id === action.payload.todoId
       );
-    },
 
-    updateTodoInList: (state, action) => {
-      state.value.map((todo) =>
-        todo.header === action.payload.header
-          ? (todo.header = action.payload.header)
-          : null
-      );
+      const currentTodosList = state.value[listIndex].todos;
+      const currentTodo = state.value[listIndex].todos[todoIndex];
+
+      const newState = [
+        ...state.value.slice(0, listIndex),
+        {
+          ...state.value[listIndex],
+          todos: [
+            ...currentTodosList.slice(0, todoIndex),
+            { ...currentTodo, checked: action.payload.checked },
+            ...currentTodosList.slice(todoIndex + 1),
+          ],
+        },
+        ...state.value.slice(listIndex + 1),
+      ];
+
+      state.value = newState;
+
+      updateArrayListsInLS(state.value);
     },
 
     searchList: (state, action) => {
@@ -116,8 +137,8 @@ const todoListsSlice = createSlice({
 
     removeAll: (state, action) => {
       state.value = [];
-      const newTodoLists = state.value;
-      localStorage.setItem("myLists", JSON.stringify(newTodoLists));
+
+      updateArrayListsInLS(state.value);
     },
   },
 });
@@ -129,8 +150,6 @@ export const {
   deleteTodoInList,
   deleteTodoList,
   updateTodoChecked,
-  updateTodoListHeader,
-  updateTodoInList,
   searchList,
   returnAllListToStateValue,
   removeAll,

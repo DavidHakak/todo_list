@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
-import { updateTodoChecked, deleteTodoInList } from "../../features/todos";
+import { updateTodoChecked, deleteTodoInList } from "../../features/todoLists";
 import styles from "./style.module.css";
 
 function Todo({ todo, todoId, listId }) {
@@ -9,7 +9,7 @@ function Todo({ todo, todoId, listId }) {
   const [isChecked, setIsChecked] = useState(todo.checked);
   const dispatch = useDispatch();
 
-  function handleCheckboxChange(e) {
+  function handleCheckboxChange() {
     dispatch(
       updateTodoChecked({
         listId: listId,
@@ -49,15 +49,14 @@ function Todo({ todo, todoId, listId }) {
           onClick={handleDeleteTodo}
         />
       )}
-      <label>
-        {todo.description}
-        <input
-          type="checkbox"
-          defaultChecked={isChecked}
-          id={todoId}
-          onChange={handleCheckboxChange}
-        />
-      </label>
+      <label htmlFor={Date.now().toString()}>{todo.description}</label>
+      <input
+        type="checkbox"
+        name="checked"
+        defaultChecked={isChecked}
+        id={Date.now().toString()}
+        onChange={handleCheckboxChange}
+      />
     </div>
   );
 }
