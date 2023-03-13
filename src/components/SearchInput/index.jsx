@@ -9,6 +9,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 function SearchInput() {
   const openInput = useSelector((state) => state.searchInput.value);
+  const modeLight = useSelector((state) => state.modeLight.value);
 
   const dispatch = useDispatch();
 
@@ -25,7 +26,11 @@ function SearchInput() {
     <div>
       {openInput && (
         <div className={styles.searchInputContainer}>
-          <div className={styles.innerInputDiv}>
+          <div
+            className={`${styles.innerInputDiv} ${
+              modeLight ? styles.borderInput : ""
+            }`}
+          >
             <input
               type="search"
               placeholder="Which list you looking for ?"

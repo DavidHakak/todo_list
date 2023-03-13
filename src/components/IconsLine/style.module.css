@@ -8,7 +8,7 @@
   justify-content: space-around;
   position: absolute;
   bottom: 1px;
-  right: 2px;
+  left: 2px;
 }
 
 .icon {
@@ -33,4 +33,8 @@
   border-radius: 7px;
   display: flex;
   justify-content: space-between;
+}
+
+.containerInputSubmit > input {
+  width: 90%;
 }

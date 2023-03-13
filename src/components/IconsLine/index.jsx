@@ -43,7 +43,12 @@ function IconsLine({ listId }) {
         </>
       ) : (
         <div className={styles.containerInputSubmit}>
-          <input type="text" placeholder="Todo Name :" ref={todoName} />
+          <input
+            type="text"
+            placeholder="Todo Name :"
+            ref={todoName}
+            dir="auto"
+          />
           <BsArrowRightCircle onClick={handleAddTodo} />
         </div>
       )}
