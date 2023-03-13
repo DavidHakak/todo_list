@@ -49,7 +49,9 @@ function Todo({ todo, todoId, listId }) {
           onClick={handleDeleteTodo}
         />
       )}
-      <label htmlFor={Date.now().toString()}>{todo.description}</label>
+      <label htmlFor={Date.now().toString()} dir="auto">
+        {todo.description}
+      </label>
       <input
         type="checkbox"
         name="checked"

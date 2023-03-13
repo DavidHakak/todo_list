@@ -20,6 +20,7 @@
 .container > label {
   height: 100%;
   width: 90%;
+  padding-right: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
