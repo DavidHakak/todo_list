@@ -33,7 +33,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 :root {
   --bg-dark-color: #282c34;
-  --bg-light-color: rgb(247, 250, 223);
+  --bg-light-color: rgb(252, 244, 252);
   --font-color-dark-mode: white;
   --font-color-light-mode: #000000;
   --color-to-hover: rgba(128, 128, 128, 0.334);
