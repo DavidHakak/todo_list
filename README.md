@@ -30,7 +30,7 @@ Currently, the application only uses local storage to store the data. In the fut
 
 This project was inspired by Google Keep and was built as a learning exercise for React and Redux.
 <br>
-Special thanks to `[piniAmiram](https://github.com/PiniAmiram)` for all the help at any time and hour.
+Special thanks to [piniAmiram](https://github.com/PiniAmiram) for all the help at any time and hour.
 
 <br>
 <br>
