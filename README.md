@@ -17,10 +17,10 @@ To create a new list, click on the "Add List" button and enter a name for the li
 
 ## Technologies Used
 
-* React
-* Redux
-* JavaScript
-* CSS
+- React
+- Redux
+- JavaScript
+- CSS
 
 ## Future Improvements
 
@@ -37,8 +37,6 @@ Special thanks to [piniAmiram](https://github.com/PiniAmiram) for all the help a
 <br>
 <br>
 
-
-
 <img width="1680" alt="Screenshot 2023-03-12 at 16 53 42" src="https://user-images.githubusercontent.com/117125426/224552836-bb193a63-784a-47d0-87b3-21ff61307513.png">
 
 <br>
@@ -49,15 +47,9 @@ Special thanks to [piniAmiram](https://github.com/PiniAmiram) for all the help a
 <br>
 <br>
 
-
-
 <img width="1680" alt="Screenshot 2023-03-12 at 16 55 07" src="https://user-images.githubusercontent.com/117125426/224552935-a6cf9518-c75f-4b28-8444-8db5703cfd23.png">
 
 <br>
 <br>
 
-
-
 <img width="337" alt="Screenshot 2023-03-12 at 16 55 39" src="https://user-images.githubusercontent.com/117125426/224552943-6c381737-0ad9-4ed9-8a3c-5c4747093941.png">
-
->>>>>>> a3ed370e80c92348b3da00eb07d909639bbebffa
